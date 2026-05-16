@@ -1,0 +1,20 @@
+{
+  "expo": {
+    "name": "Social Network",
+    "slug": "social-network",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "newArchEnabled": true,
+    "android": {
+      "package": "com.example.socialnetwork"
+    },
+    "plugins": [
+      "expo-asset",
+      "expo-font"
+    ]
+  }
+}

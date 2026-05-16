@@ -1,0 +1,12 @@
+{
+  "name": "social-network-template",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Social network starter with React Native (Android) + Node.js API",
+  "scripts": {
+    "install:all": "npm install --prefix mobile && npm install --prefix server",
+    "mobile": "npm --prefix mobile start",
+    "android": "npm --prefix mobile run android",
+    "api": "npm --prefix server run dev"
+  }
+}
