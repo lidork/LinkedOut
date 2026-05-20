@@ -174,3 +174,15 @@ Social_Network/
 - `requireSelf` middleware enforces that users can only access their own data
 - Users can only edit/delete their own posts
 - Never commit `.env` — it is listed in `.gitignore`
+
+---
+
+## JWT Token Expiration
+
+Tokens are signed with a 7-day expiry (`expiresIn: "7d"`). When a token expires, the next API call returns HTTP 401 and the user sees an error.
+
+**Why we didn't implement a refresh token flow:**
+
+A proper refresh flow requires a second long-lived token, a dedicated `/api/auth/refresh` endpoint, secure storage separation between the short-lived access token and the long-lived refresh token, and logic in `apiFetch` to intercept 401s, call the refresh endpoint, retry the original request, and fall back to logout if the refresh itself fails. Wiring this without a circular dependency between `apiFetch` (a plain module) and `AuthContext` (a React context) adds meaningful architectural complexity.
+
+For the scope of this project, the 7-day window is long enough that expiry will not occur during normal use or a demo. If a token does expire, the user logs in again — a minor UX inconvenience, not a security issue. The `JWT_SECRET` in `.env` should be a random 32-byte hex string (generate with `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`); it never changes at runtime and does not need rotation for a course project.
